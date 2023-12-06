@@ -3,4 +3,11 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="hyphen">-</string>
+    <string name="movie">Movie</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="movie_description">Movie Description</string>
+    <string name="_2020">2020</string>
+    <string name="_8_5">85%</string>
+    <string name="_1249Rating">1,248 Ratings</string>
 </resources>

@@ -8,8 +8,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.arksana.fili.databinding.FragmentFavoriteBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class FavoriteFragment : Fragment() {
+@AndroidEntryPoint
+class FavoriteFragment  @Inject constructor() : Fragment() {
 
     private var _binding: FragmentFavoriteBinding? = null
 
