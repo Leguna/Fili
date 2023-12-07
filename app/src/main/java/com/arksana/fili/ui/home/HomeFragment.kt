@@ -6,15 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.arksana.fili.adapter.MovieListAdapter
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.arksana.fili.adapter.MoviePagingAdapter
 import com.arksana.fili.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment @Inject constructor() : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
+    private var adapter: MoviePagingAdapter? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -27,21 +31,22 @@ class HomeFragment @Inject constructor() : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         val recyclerView = binding.rvMovies
-        val adapter = MovieListAdapter()
-        recyclerView.adapter = adapter
-        homeViewModel.movieList.observe(viewLifecycleOwner) {
-            adapter.setMovieList(it ?: listOf())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val movieListAdapter = MoviePagingAdapter { _ ->
+        }
+        recyclerView.adapter = movieListAdapter
+
+        homeViewModel.getPopularMovie().observe(viewLifecycleOwner) { pagingData ->
+            lifecycleScope.launch {
+                movieListAdapter.submitData(pagingData)
+            }
         }
 
         val swipeRefreshLayout = binding.swipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
-            homeViewModel.refreshMovieList()
             swipeRefreshLayout.isRefreshing = false
         }
-
-        homeViewModel.loadMovies()
 
         return root
     }
@@ -50,5 +55,6 @@ class HomeFragment @Inject constructor() : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        adapter = null
     }
 }

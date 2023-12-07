@@ -74,8 +74,6 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation("com.github.leonardoxh:retrofit2-livedata-adapter:1.1.2")
-    // Logging
-    implementation("com.jakewharton.timber:timber:5.0.1")
 
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
@@ -113,6 +111,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("com.facebook.shimmer:shimmer:0.5.0@aar")
 
     // Lifecycle
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")

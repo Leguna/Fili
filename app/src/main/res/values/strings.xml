@@ -10,4 +10,7 @@
     <string name="_2020">2020</string>
     <string name="_8_5">85%</string>
     <string name="_1249Rating">1,248 Ratings</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Movies, TV Series, Peoples</string>
 </resources>

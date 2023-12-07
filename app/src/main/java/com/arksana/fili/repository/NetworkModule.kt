@@ -12,22 +12,28 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+    private val defaultHttpClient = OkHttpClient()
 
     @Provides
     fun provideRetrofit(): Retrofit {
+        val loggingInterceptor = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY // Set the desired log level
+        }
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        val client: OkHttpClient = Builder()
-            .addInterceptor(interceptor)
-            .addInterceptor(HeaderInterceptor())
-            .build()
+        val client = Builder().addInterceptor(interceptor)
+        if (BuildConfig.DEBUG) {
+            client.addInterceptor(loggingInterceptor)
+        }
+        client.addInterceptor(HeaderInterceptor())
 
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
-            .client(client)
+            .client(client.build())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

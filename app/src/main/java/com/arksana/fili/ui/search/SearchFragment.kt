@@ -6,11 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arksana.fili.R
-import com.arksana.fili.adapter.MovieListAdapter
-import com.arksana.fili.databinding.FragmentHomeBinding
 import com.arksana.fili.databinding.FragmentSearchBinding
-import com.arksana.fili.ui.home.HomeViewModel
 
 class SearchFragment : Fragment() {
 
