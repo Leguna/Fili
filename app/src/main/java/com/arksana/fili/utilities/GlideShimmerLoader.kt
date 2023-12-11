@@ -15,10 +15,12 @@ class GlideShimmerLoader {
 
     object GlideShimmerLoader {
         fun loadWithShimmer(context: Context?, imageUrl: String?, imageView: ImageView) {
+            val whiteColor = -0x1
+            val greyColor = -0x333334
             val shimmer = Shimmer.ColorHighlightBuilder()
-                .setBaseColor(context?.resources?.getColor(android.R.color.white)!!)
+                .setBaseColor(greyColor)
                 .setBaseAlpha(1f)
-                .setHighlightColor(context.resources.getColor(android.R.color.darker_gray))
+                .setHighlightColor(whiteColor)
                 .setHighlightAlpha(1f)
                 .setDropoff(
                     50f
@@ -27,6 +29,7 @@ class GlideShimmerLoader {
             val shimmerDrawable = ShimmerDrawable()
             shimmerDrawable.setShimmer(shimmer)
             val requestOptions = RequestOptions()
+                .dontTransform()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(shimmerDrawable)
                 .error(shimmerDrawable)

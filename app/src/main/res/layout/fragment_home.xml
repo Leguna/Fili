@@ -13,7 +13,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nested_scroll_view"
             android:layout_width="match_parent"
@@ -22,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -33,48 +32,56 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/normal"
-                    android:layout_marginTop="@dimen/large"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_now_playing" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_now_playing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/small"
-                    android:layout_marginEnd="@dimen/small"
-                    android:layout_marginTop="@dimen/normal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/now_playing"
                     android:textColor="@color/material_dynamic_neutral40"
                     android:textSize="@dimen/large_text_size"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/search_view" />
 
 
                 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                     android:id="@+id/swipe_refresh_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/small"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:fadingEdge="vertical|horizontal"
+                    android:fadingEdgeLength="50dp"
                     android:minHeight="700dp"
+                    android:requiresFadingEdge="vertical|horizontal"
                     app:layout_constraintTop_toBottomOf="@+id/tv_now_playing">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_movies"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
                         android:layout_marginStart="@dimen/small"
                         android:layout_marginTop="@dimen/small"
                         android:layout_marginEnd="@dimen/small"
                         android:layout_marginBottom="@dimen/small"
                         android:background="@color/material_dynamic_neutral99"
+                        android:fadingEdge="vertical|horizontal"
+                        android:fadingEdgeLength="30dp"
                         android:padding="@dimen/small"
+                        android:requiresFadingEdge="vertical|horizontal"
                         android:scrollbars="vertical"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="10"
                         tools:listitem="@layout/item_movie" />
 
                 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

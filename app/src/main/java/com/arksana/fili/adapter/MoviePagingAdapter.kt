@@ -31,7 +31,7 @@ class MovieViewHolder(private val binding: ItemMovieBinding) :
     fun bind(movie: Movie, movieClickListener: MovieClickListener) {
         with(binding) {
             itemView.setOnClickListener {
-                movieClickListener.onMovieClick(movie)
+                movieClickListener.onMovieClick(movie, ivMoviePoster)
             }
             GlideShimmerLoader.GlideShimmerLoader.loadWithShimmer(
                 itemView.context,
@@ -64,5 +64,5 @@ class MovieDiffCallBack : DiffUtil.ItemCallback<Movie>() {
 }
 
 fun interface MovieClickListener {
-    fun onMovieClick(movie: Movie)
+    fun onMovieClick(movie: Movie, imageView: android.widget.ImageView)
 }

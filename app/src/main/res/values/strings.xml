@@ -13,4 +13,10 @@
     <string name="now_playing">Now Playing</string>
     <string name="search">Search</string>
     <string name="search_hint">Movies, TV Series, Peoples</string>
+    <string name="empty_notification">Sorry, there is no data</string>
+    <string name="settings">Settings</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="detail">Detail</string>
+    <string name="title_main">Main</string>
+    <string name="back">Back</string>
 </resources>

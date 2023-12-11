@@ -5,6 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -79,6 +80,10 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.google.code.gson:gson:2.10.1")
 
+    // View Pager
+    implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+
     // DI
     implementation("com.google.dagger:hilt-android:2.49")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
@@ -117,6 +122,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 
+
     // AndroidX
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.21")
     implementation("androidx.core:core-ktx:1.12.0")
@@ -128,4 +134,5 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
 }

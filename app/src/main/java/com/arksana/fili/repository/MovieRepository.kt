@@ -6,7 +6,8 @@ import com.arksana.fili.model.Movie
 import javax.inject.Inject
 
 class MovieRepository @Inject constructor(
-    private val moviePagingSource: MoviePagingSource
+    private val moviePagingSource: MoviePagingSource,
+    private val movieSearchSource: MovieSearchSource
 ) {
     fun getMovie(): Pager<Int, Movie> {
         return Pager(
@@ -16,6 +17,20 @@ class MovieRepository @Inject constructor(
             ),
             pagingSourceFactory = {
                 moviePagingSource
+            }
+        )
+    }
+
+    fun searchMovie(query: String): Pager<Int, Movie> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = {
+                movieSearchSource.apply {
+                    this.query = query
+                }
             }
         )
     }
