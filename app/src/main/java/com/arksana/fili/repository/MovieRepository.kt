@@ -1,37 +1,31 @@
 package com.arksana.fili.repository
 
+import androidx.lifecycle.LiveData
 import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import com.arksana.fili.model.Movie
 import javax.inject.Inject
 
 class MovieRepository @Inject constructor(
-    private val moviePagingSource: MoviePagingSource,
-    private val movieSearchSource: MovieSearchSource
+    private val remoteDataSource: MoviesRemoteDataSource,
+    private val movieDao: MovieDao,
 ) {
     fun getMovie(): Pager<Int, Movie> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
-            pagingSourceFactory = {
-                moviePagingSource
-            }
-        )
+        return remoteDataSource.getMovies()
     }
 
     fun searchMovie(query: String): Pager<Int, Movie> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
-            pagingSourceFactory = {
-                movieSearchSource.apply {
-                    this.query = query
-                }
-            }
-        )
+        return remoteDataSource.searchMovies(query)
+    }
+
+    fun getAllFavoriteMovie(): LiveData<List<Movie>> {
+        return movieDao.getAllFavoriteMovies()
+    }
+
+    suspend fun addFavoriteMovie(movie: Movie) {
+        movieDao.insertMovie(movie)
+    }
+
+    suspend fun updateFavoriteMovie(movie: Movie) {
+        movieDao.updateMovie(movie)
     }
 }

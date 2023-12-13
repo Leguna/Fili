@@ -3,30 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_main">
+    app:startDestination="@id/main_fragment">
 
     <fragment
-        android:id="@+id/navigation_main"
+        android:id="@+id/main_fragment"
         android:name="com.arksana.fili.ui.main.MainFragment"
         android:label="@string/title_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
-            android:id="@+id/action_navigation_main_to_navigation_detail"
+            android:id="@+id/action_main_fragment_to_navigation_detail"
             app:destination="@id/navigation_detail"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
         <action
-            android:id="@+id/action_navigation_main_to_navigation_search"
+            android:id="@+id/action_main_fragment_to_navigation_search"
             app:destination="@id/navigation_search"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
-            app:launchSingleTop="true"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/navigation_main"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/main_fragment" />
     </fragment>
 
 
@@ -37,45 +35,22 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_navigation_search_to_navigation_detail"
-            app:destination="@id/navigation_detail" />
+            app:destination="@id/navigation_detail"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_detail"
         android:name="com.arksana.fili.ui.detail.DetailFragment"
         android:label="@string/detail"
-        tools:layout="@layout/fragment_detail" />
-
-
-    <action
-        android:id="@+id/action_navigation_favorite_to_navigation_detail"
-        app:destination="@id/navigation_detail" />
-
-    <action
-        android:id="@+id/action_navigation_home_to_navigation_detail"
-        app:destination="@id/navigation_detail" >
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="movie"
             app:argType="string" />
-    </action>
-    <navigation android:id="@+id/navigation"
-        app:startDestination="@id/navigation_home">
-        <fragment
-            android:id="@+id/navigation_settings"
-            android:name="com.arksana.fili.ui.settings.SettingsFragment"
-            android:label="@string/settings"
-            tools:layout="@layout/fragment_settings" />
-        <fragment
-            android:id="@+id/navigation_home"
-            android:name="com.arksana.fili.ui.home.HomeFragment"
-            android:label="@string/title_home"
-            tools:layout="@layout/fragment_home" />
-        <fragment
-            android:id="@+id/navigation_favorite"
-            android:name="com.arksana.fili.ui.favorite.FavoriteFragment"
-            android:label="@string/title_favorite"
-            tools:layout="@layout/fragment_favorite" />
-    </navigation>
+    </fragment>
 
 
 </navigation>

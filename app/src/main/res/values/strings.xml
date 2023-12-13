@@ -19,4 +19,5 @@
     <string name="detail">Detail</string>
     <string name="title_main">Main</string>
     <string name="back">Back</string>
+    <string name="please_check_your_connection">Please, check your connection</string>
 </resources>

@@ -10,6 +10,7 @@
     app:cardElevation="@dimen/small"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
+    android:transitionName="search_card_view"
     app:layout_constraintTop_toTopOf="parent">
 
     <LinearLayout
@@ -48,6 +49,7 @@
             android:maxLines="1"
             android:minHeight="48dp"
             android:padding="@dimen/small"
+            android:transitionName="search_view"
             android:textColor="@color/material_dynamic_neutral40"
             android:textColorHint="@color/material_dynamic_neutral40"
             android:textSize="@dimen/medium_text_size"

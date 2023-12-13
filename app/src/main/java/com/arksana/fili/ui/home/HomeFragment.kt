@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.arksana.fili.R
 import com.arksana.fili.adapter.MoviePagingAdapter
 import com.arksana.fili.databinding.FragmentHomeBinding
+import com.arksana.fili.ui.main.MainFragmentDirections
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,55 +26,56 @@ import javax.inject.Inject
 class HomeFragment @Inject constructor() : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    private var adapter: MoviePagingAdapter? = null
     private val binding get() = _binding!!
+    private var adapter: MoviePagingAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         val homeViewModel =
             ViewModelProvider(this)[HomeViewModel::class.java]
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        val recyclerView = binding.rvMovies
-        val searchView = binding.searchView
 
+        postponeEnterTransition()
+        val animation =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition = animation
+        sharedElementReturnTransition = animation
+
+        val recyclerView = binding.rvMovies
+        val emptyView = layoutInflater.inflate(R.layout.empty_notification, recyclerView, false);
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val movieListAdapter = MoviePagingAdapter { movie, imageView ->
+        val movieListAdapter = MoviePagingAdapter({ movie, imageView ->
             val extras = FragmentNavigatorExtras(
-                imageView to "movie_poster_transition"
+                imageView to movie.id.toString(),
             )
             val navHostFragment =
                 requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
             val navController = navHostFragment.navController
-            val action = HomeFragmentDirections.actionNavigationHomeToNavigationDetail(movie.toString())
-            // TODO: Add transition to detail fragment using extras
-            navController.navigate(action)
-        }
+            val action =
+                MainFragmentDirections.actionMainFragmentToNavigationDetail(Gson().toJson(movie))
+            navController.navigate(action, extras)
+        }, emptyView)
         recyclerView.adapter = movieListAdapter
+        recyclerView.doOnPreDraw {
+            startPostponedEnterTransition()
+        }
 
-
-        binding.searchView.cardView.transitionName = "home_search_transition"
-
-        sharedElementEnterTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-        sharedElementReturnTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-
-
+        val searchView = binding.searchView
         searchView.etSearch.setOnClickListener {
             searchView.etSearch.isCursorVisible = true
             val navHostFragment =
                 requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
             val navController = navHostFragment.navController
 
-            val extras = FragmentNavigatorExtras(searchView.cardView to "home_search_transition")
+            val extras = FragmentNavigatorExtras(
+                searchView.cardView to "search_card_view",
+            )
+
             navController.navigate(
-                R.id.action_navigation_main_to_navigation_search,
-                null,
-                null,
+                MainFragmentDirections.actionMainFragmentToNavigationSearch(),
                 extras
             )
         }
@@ -88,7 +91,7 @@ class HomeFragment @Inject constructor() : Fragment() {
             swipeRefreshLayout.isRefreshing = false
         }
 
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {

@@ -14,7 +14,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: MovieRepository) :
     ViewModel() {
-
     fun getPopularMovie(): LiveData<PagingData<Movie>> {
         return repository.getMovie().liveData.cachedIn(viewModelScope)
     }

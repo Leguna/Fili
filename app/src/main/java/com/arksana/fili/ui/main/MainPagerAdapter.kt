@@ -2,7 +2,9 @@ package com.arksana.fili.ui.main
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.adapter.FragmentViewHolder
 import com.arksana.fili.ui.favorite.FavoriteFragment
 import com.arksana.fili.ui.home.HomeFragment
 import com.arksana.fili.ui.settings.SettingsFragment
@@ -18,15 +20,11 @@ class MainPagerAdapter(fragmentActivity: FragmentActivity) :
         fragments.add(SettingsFragment())
     }
 
-
     override fun getItemCount(): Int = NUM_PAGES
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> {
-                HomeFragment()
-            }
-
+            0 -> HomeFragment()
             1 -> FavoriteFragment()
             2 -> SettingsFragment()
             else -> fragments[position]

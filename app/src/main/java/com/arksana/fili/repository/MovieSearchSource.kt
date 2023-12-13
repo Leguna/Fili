@@ -5,10 +5,12 @@ import androidx.paging.PagingState
 import com.arksana.fili.model.Movie
 import javax.inject.Inject
 
-class MovieSearchSource @Inject constructor(private val service: MovieApiService) :
+class MovieSearchSource @Inject constructor(
+    private val service: MovieApiService,
+    private val query: String,
+) :
     PagingSource<Int, Movie>() {
 
-    var query: String = ""
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)

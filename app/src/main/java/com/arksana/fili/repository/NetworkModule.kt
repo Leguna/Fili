@@ -16,8 +16,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    private val defaultHttpClient = OkHttpClient()
-
     @Provides
     fun provideRetrofit(): Retrofit {
         val loggingInterceptor = HttpLoggingInterceptor().apply {
@@ -31,6 +29,7 @@ object NetworkModule {
         }
         client.addInterceptor(HeaderInterceptor())
 
+        // Using kotlin serialization
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(client.build())

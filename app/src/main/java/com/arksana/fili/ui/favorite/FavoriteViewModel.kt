@@ -1,13 +1,16 @@
 package com.arksana.fili.ui.favorite
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.arksana.fili.model.Movie
+import com.arksana.fili.repository.MovieRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FavoriteViewModel : ViewModel() {
+@HiltViewModel
+class FavoriteViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Favorite Fragment"
-    }
-    val text: LiveData<String> = _text
+    val allMovies: LiveData<List<Movie>> = repository.getAllFavoriteMovie()
 }

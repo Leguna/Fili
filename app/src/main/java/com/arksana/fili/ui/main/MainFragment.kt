@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,10 +17,10 @@ class MainFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {
-        val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+        postponeEnterTransition()
         val viewPager = binding.viewPager
         val bottomNavigationView = binding.bottomNavView
         val navHostFragment = findNavController()
@@ -27,6 +28,7 @@ class MainFragment : Fragment() {
         viewPager.registerOnPageChangeCallback(object :
             androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
+                startPostponedEnterTransition()
                 bottomNavigationView.menu.getItem(position).isChecked = true
                 when (position) {
                     0 -> navHostFragment.popBackStack(R.id.navigation_home, true)
@@ -35,6 +37,7 @@ class MainFragment : Fragment() {
                 }
             }
         })
+
         viewPager.adapter = adapter
 
         bottomNavigationView.setOnItemSelectedListener { item ->

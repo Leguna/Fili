@@ -2,20 +2,23 @@ package com.arksana.fili.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.PagingData
 import com.arksana.fili.model.Movie
-import kotlinx.coroutines.flow.Flow
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
 
 interface MoviesRemoteDataSource {
-    fun getMovies(): Flow<PagingData<Movie>>
+    fun getMovies(): Pager<Int, Movie>
+    fun searchMovies(query: String): Pager<Int, Movie>
 }
 
-internal class MoviesRemoteDataSourceImpl @Inject constructor(
-    private val movieService: MovieApiService
+class MoviesRemoteDataSourceImpl @Inject constructor(
+    private val movieService: MovieApiService,
 ) : MoviesRemoteDataSource {
 
-    override fun getMovies(): Flow<PagingData<Movie>> {
+    override fun getMovies(): Pager<Int, Movie> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
@@ -24,6 +27,18 @@ internal class MoviesRemoteDataSourceImpl @Inject constructor(
             pagingSourceFactory = {
                 MoviePagingSource(movieService)
             }
-        ).flow
+        )
+    }
+
+    override fun searchMovies(query: String): Pager<Int, Movie> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = {
+                MovieSearchSource(movieService, query)
+            }
+        )
     }
 }

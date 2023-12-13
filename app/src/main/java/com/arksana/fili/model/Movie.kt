@@ -1,76 +1,92 @@
 package com.arksana.fili.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "response_movie")
 data class MovieList(
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
     @SerializedName("dates")
     @Expose
-    val dates: Dates = Dates(),
+    var dates: Dates = Dates(),
     @SerializedName("page")
     @Expose
-    val page: Int = 0,
+    var page: Int = 0,
     @SerializedName("results")
     @Expose
-    val results: List<Movie> = listOf(),
+    var results: List<Movie> = listOf(),
     @SerializedName("total_pages")
     @Expose
-    val totalPages: Int = 0,
+    var totalPages: Int = 0,
     @SerializedName("total_results")
     @Expose
-    val totalResults: Int = 0
+    var totalResults: Int = 0,
 )
 
 data class Dates(
     @SerializedName("maximum")
     @Expose
-    val maximum: String = "",
+    var maximum: String = "",
     @SerializedName("minimum")
     @Expose
-    val minimum: String = ""
+    var minimum: String = "",
 )
 
+@Entity(tableName = "movies")
 data class Movie(
+    @SerializedName("is_favorite")
+    @ColumnInfo(name = "is_favorite")
+    var isFavorite: Boolean = false,
     @SerializedName("adult")
     @Expose
-    val adult: Boolean = false,
+    var adult: Boolean = false,
     @SerializedName("backdrop_path")
     @Expose
-    val backdropPath: String = "",
+    var backdropPath: String = "",
     @SerializedName("genre_ids")
     @Expose
-    val genreIds: List<Int> = listOf(),
+    @Ignore
+    var genreIds: List<Int> = listOf(),
     @SerializedName("id")
     @Expose
-    val id: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
     @SerializedName("original_language")
     @Expose
-    val originalLanguage: String = "",
+    var originalLanguage: String = "",
     @SerializedName("original_title")
     @Expose
-    val originalTitle: String = "",
+    @ColumnInfo(name = "original_title")
+    var originalTitle: String = "",
     @SerializedName("overview")
     @Expose
-    val overview: String = "",
+    @ColumnInfo(name = "overview")
+    var overview: String = "",
     @SerializedName("popularity")
     @Expose
-    val popularity: Double = 0.0,
+    var popularity: Double = 0.0,
     @SerializedName("poster_path")
     @Expose
-    val posterPath: String = "",
+    var posterPath: String = "",
     @SerializedName("release_date")
     @Expose
-    val releaseDate: String = "",
+    var releaseDate: String = "",
     @SerializedName("title")
     @Expose
-    val title: String = "",
+    @ColumnInfo(name = "title")
+    var title: String = "",
     @SerializedName("video")
     @Expose
-    val video: Boolean = false,
+    var video: Boolean = false,
     @SerializedName("vote_average")
     @Expose
-    val voteAverage: Double = 0.0,
+    var voteAverage: Double = 0.0,
     @SerializedName("vote_count")
     @Expose
-    val voteCount: Int = 0
+    var voteCount: Int = 0,
 )

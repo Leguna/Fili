@@ -2,6 +2,7 @@ package com.arksana.fili.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -12,16 +13,29 @@ import com.arksana.fili.model.Movie
 import com.arksana.fili.model.MovieList.*
 import com.arksana.fili.utilities.GlideShimmerLoader
 
-class MoviePagingAdapter(private val movieClickListener: MovieClickListener) :
+
+class MoviePagingAdapter(
+    private val movieClickListener: MovieClickListener,
+    private val emptyView: View,
+) :
     PagingDataAdapter<Movie, MovieViewHolder>(MovieDiffCallBack()) {
 
+    private lateinit var binding: ItemMovieBinding
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MovieViewHolder(binding)
     }
 
+
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bind(getItem(position)!!, movieClickListener)
+        updateEmptyStateVisibility()
+    }
+
+    private fun updateEmptyStateVisibility() {
+        val isEmpty = itemCount == 0
+        emptyView.visibility = if (isEmpty) View.VISIBLE else View.GONE
     }
 }
 
@@ -49,6 +63,7 @@ class MovieViewHolder(private val binding: ItemMovieBinding) :
                 .replace(Regex("(\\d)(?=(\\d{3})+(?!\\d))"), "$1,") + " users"
             pbMovie.progress = "${movie.voteAverage}".toFloat().toInt()
             pbMovie.max = 10
+            ivMoviePoster.transitionName = movie.posterPath
         }
     }
 }
