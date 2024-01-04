@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Theme.Fili" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.Fili" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/light_1</item>
         <item name="colorPrimaryVariant">@color/light_3</item>
         <item name="colorSecondary">@color/light_2</item>

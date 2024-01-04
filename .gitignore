@@ -13,5 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-/app/release/app-release.aab
-/app/release/fili-2.0.0.aab
+/app/release/
