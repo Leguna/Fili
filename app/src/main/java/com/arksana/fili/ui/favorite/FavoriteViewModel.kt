@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FavoriteViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
-
+class FavoriteViewModel @Inject constructor(repository: MovieRepository) : ViewModel() {
     val allMovies: LiveData<List<Movie>> = repository.getAllFavoriteMovie()
 }

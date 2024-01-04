@@ -4,25 +4,25 @@
         <shape
             android:innerRadiusRatio="3"
             android:shape="ring"
-            android:useLevel="false"
+            android:thicknessRatio="8"
             android:type="sweep"
-            android:thicknessRatio="8">
-            <solid android:color="@color/material_dynamic_neutral50"/>
+            android:useLevel="false">
+            <solid android:color="?colorSecondaryVariant" />
         </shape>
     </item>
     <item android:id="@android:id/progress">
         <rotate
+            android:fromDegrees="-90"
             android:pivotX="50%"
             android:pivotY="50%"
-            android:fromDegrees="-90"
             android:toDegrees="-90">
             <shape
+                android:angle="0"
                 android:innerRadiusRatio="3"
                 android:shape="ring"
-                android:angle="0"
-                android:type="sweep"
-                android:thicknessRatio="8">
-                <solid android:color="@color/material_dynamic_primary40"/>
+                android:thicknessRatio="8"
+                android:type="sweep">
+                <solid android:color="?colorPrimary" />
             </shape>
         </rotate>
     </item>

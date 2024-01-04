@@ -2,7 +2,6 @@ package com.arksana.fili.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
 import com.arksana.fili.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

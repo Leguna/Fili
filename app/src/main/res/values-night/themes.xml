@@ -1,17 +1,22 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.Fili" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-        <item name="android:windowContentTransitions">true</item>
+<resources>
+    <style name="Theme.Fili.Night" parent="Theme.Fili">
+        <!--        <item name="colorPrimary">@color/dark_1</item>-->
+        <!--        <item name="colorPrimaryVariant">@color/dark_2</item>-->
+        <!--        <item name="colorOnPrimary">@color/black</item>-->
+
+        <!--        <item name="colorSecondary">@color/dark_3</item>-->
+        <!--        <item name="colorSecondaryVariant">@color/dark_4</item>-->
+        <!--        <item name="colorOnSecondary">@color/black</item>-->
+
+        <!--        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>-->
+        <!--        <item name="android:windowContentTransitions">true</item>-->
+
+        <!--        <item name="backgroundColor">@color/dark_1</item>-->
+
+        <!--        <item name="preferenceTheme">@style/MyStyle.Preference.v21</item>-->
+        <!--    </style>-->
+
+        <!--    <style name="MyStyle.Preference.v21" parent="@style/PreferenceThemeOverlay.v14.Material">-->
+        <!--        <item name="android:tint">?colorSecondaryVariant</item>-->
     </style>
 </resources>

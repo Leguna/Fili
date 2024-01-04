@@ -55,6 +55,7 @@ class FavoriteFragment @Inject constructor() : Fragment() {
             navController.navigate(action, extras)
 
         }, emptyView = binding.emptyNotification.root)
+
         viewModel.allMovies.observe(viewLifecycleOwner) {
             (binding.rvFavorite.adapter as MoviePagingAdapter).submitData(
                 lifecycle,

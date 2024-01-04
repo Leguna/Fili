@@ -20,4 +20,9 @@
     <string name="title_main">Main</string>
     <string name="back">Back</string>
     <string name="please_check_your_connection">Please, check your connection</string>
+    <string name="daily_reminder_notification">Daily Reminder Notification</string>
+    <string name="language">Language</string>
+    <string name="daily_reminder_message">Let\'s see what movie playing now!</string>
+    <string name="channel_description">Reminder Channel</string>
+    <string name="https_github_com_leguna_fili_issues">https://github.com/Leguna/Fili/issues</string>
 </resources>

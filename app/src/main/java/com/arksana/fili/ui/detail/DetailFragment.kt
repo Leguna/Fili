@@ -44,7 +44,7 @@ class DetailFragment @Inject constructor() : Fragment() {
             binding.imageView.transitionName = it.id.toString()
         }
 
-        val animation = TransitionInflater.from(context).inflateTransition(android.R.transition.fade)
+        val animation = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
         sharedElementEnterTransition = animation
         sharedElementReturnTransition = animation
         postponeEnterTransition(200, TimeUnit.MILLISECONDS)

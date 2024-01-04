@@ -28,7 +28,6 @@
         android:gravity="center"
         android:paddingHorizontal="@dimen/normal"
         android:text="@string/empty_notification"
-        android:textColor="@color/material_dynamic_neutral40"
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

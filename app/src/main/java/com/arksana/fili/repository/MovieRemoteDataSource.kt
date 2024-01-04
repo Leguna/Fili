@@ -14,6 +14,15 @@ interface MoviesRemoteDataSource {
     fun searchMovies(query: String): Pager<Int, Movie>
 }
 
+@Module
+@InstallIn(SingletonComponent::class)
+object MovieRemoteDatabaseModule {
+    @Provides
+    fun provideMoviesRemoteDataSource(movieService: MovieApiService): MoviesRemoteDataSource {
+        return MoviesRemoteDataSourceImpl(movieService)
+    }
+}
+
 class MoviesRemoteDataSourceImpl @Inject constructor(
     private val movieService: MovieApiService,
 ) : MoviesRemoteDataSource {

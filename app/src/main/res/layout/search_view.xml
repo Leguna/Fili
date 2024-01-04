@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="0dp"
-    app:cardBackgroundColor="@color/material_dynamic_neutral100"
+    android:transitionName="search_card_view"
     app:cardCornerRadius="@dimen/small"
     app:cardElevation="@dimen/small"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    android:transitionName="search_card_view"
     app:layout_constraintTop_toTopOf="parent">
 
     <LinearLayout
@@ -29,12 +28,12 @@
             android:layout_marginEnd="@dimen/small"
             android:layout_marginBottom="@dimen/small"
             android:background="@drawable/ic_search"
-            android:backgroundTint="@color/black"
             android:contentDescription="@string/search"
             android:padding="@dimen/small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <EditText
             android:id="@+id/et_search"
@@ -49,11 +48,9 @@
             android:maxLines="1"
             android:minHeight="48dp"
             android:padding="@dimen/small"
-            android:transitionName="search_view"
-            android:textColor="@color/material_dynamic_neutral40"
-            android:textColorHint="@color/material_dynamic_neutral40"
-            android:textSize="@dimen/medium_text_size"
-            android:textStyle="bold" />
+            android:textSize="@dimen/small_text_size"
+            android:textStyle="bold"
+            android:transitionName="search_view" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

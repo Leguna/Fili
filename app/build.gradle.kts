@@ -7,18 +7,31 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs.kotlin")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.7.20"
+    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.arksana.fili"
     compileSdk = 34
 
+    signingConfigs {
+        val keystoreFile = project.rootProject.file("local.properties")
+        val properties = Properties()
+        properties.load(keystoreFile.inputStream())
+        create("release") {
+            storeFile = file(properties.getProperty("storeFile") ?: "")
+            storePassword = properties.getProperty("storePassword") ?: ""
+            keyAlias = properties.getProperty("keyAlias") ?: ""
+            keyPassword = properties.getProperty("keyPassword") ?: ""
+        }
+    }
+
     defaultConfig {
         applicationId = "com.arksana.fili"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 7
+        versionName = "2.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -51,6 +64,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
@@ -89,6 +103,7 @@ dependencies {
     // DI
     implementation("com.google.dagger:hilt-android:2.49")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.preference:preference-ktx:1.2.1")
     kapt("com.google.dagger:hilt-android-compiler:2.49")
     implementation("com.google.dagger:hilt-android:2.49")
     kapt("com.google.dagger:hilt-compiler:2.49")
@@ -130,12 +145,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.21")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
 
 }

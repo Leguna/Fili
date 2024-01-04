@@ -13,7 +13,7 @@
         android:layout_marginHorizontal="@dimen/normal"
         android:layout_marginTop="@dimen/normal"
         android:text="@string/title_favorite"
-        android:textColor="@color/material_dynamic_neutral40"
+        android:textColor="@color/grey"
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

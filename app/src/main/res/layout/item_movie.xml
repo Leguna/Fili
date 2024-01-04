@@ -15,7 +15,6 @@
         android:layout_marginBottom="@dimen/small"
         android:maxWidth="200dp"
         android:maxHeight="200dp"
-        app:cardBackgroundColor="@color/cardview_light_background"
         app:cardCornerRadius="@dimen/small"
         app:cardElevation="@dimen/small"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,8 +24,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/material_dynamic_neutral99">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/iv_movie_poster"
@@ -49,7 +47,6 @@
                 android:layout_marginTop="@dimen/small"
                 android:layout_marginEnd="@dimen/small"
                 android:text="@string/movie_title"
-                android:textColor="@color/material_dynamic_secondary30"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_movie_poster"
@@ -65,7 +62,6 @@
                 android:ellipsize="end"
                 android:maxLines="5"
                 android:text="@string/movie_description"
-                android:textColor="@color/material_dynamic_secondary30"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_movie_poster"
@@ -78,7 +74,6 @@
                 android:layout_marginStart="@dimen/small"
                 android:layout_marginTop="@dimen/small"
                 android:text="@string/_2020"
-                android:textColor="@color/material_dynamic_secondary30"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/iv_movie_poster"
                 app:layout_constraintTop_toBottomOf="@+id/tv_movie_title" />
@@ -90,7 +85,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="@string/_1249Rating"
-                android:textColor="@color/material_dynamic_secondary30"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/pb_movie"
                 app:layout_constraintStart_toEndOf="@+id/pb_movie"
@@ -102,7 +96,6 @@
                 android:layout_height="0dp"
                 android:gravity="center|center_horizontal|center_vertical"
                 android:textAlignment="center"
-                android:textColor="@color/material_dynamic_neutral40"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/pb_movie"
                 app:layout_constraintEnd_toEndOf="@+id/pb_movie"
@@ -121,7 +114,6 @@
                 android:layout_marginBottom="@dimen/small"
                 android:indeterminate="false"
                 android:max="100"
-                android:progress="20"
                 android:progressDrawable="@drawable/loader"
                 app:layout_constraintStart_toEndOf="@+id/iv_movie_poster"
                 app:layout_constraintTop_toBottomOf="@+id/tv_movie_description" />
